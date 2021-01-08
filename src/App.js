@@ -1,5 +1,8 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import Home from './Components/home'
+import Login from './Components/login';
+import Logout from './Components/logout';
+
 
 
 
@@ -7,11 +10,10 @@ export default function App() {
  
 
   return (
-    <div style={{textAlign:'center'}}>
-      <Button>About</Button>
-      <Button color="primary">Explore</Button>
-      <Button color="secondary">Your BFFs</Button>
-      <Button  color="primary">Contact</Button>
-    </div>
+	  <div>
+    <Home />
+	<Login/>
+	<Logout/>
+	</div>
   );
 }
