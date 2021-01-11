@@ -1,28 +1,31 @@
 import React from 'react';
-import{ GoogleLogin} from 'react-google-login';
+import { useGoogleLogin} from 'react-google-login';
+import {refreshTokenSetup} from '../refreshToken';
+import {clientId} from '../config';
 
-require('dotenv').config()
-
-
-const clientId =process.env.OAUTH_KEY;
 function Login(){
     const onSuccess =(res)=>{
         console.log('[Login Success] currentUser:', res.profileObj);
+        refreshTokenSetup(res);
     };
     const onFailure=(res)=>{
         console.log('[Login failed]res:', res);
     };
+
+    const{signIn}= useGoogleLogin({
+        onSuccess,
+        onFailure,
+        clientId,
+        isSignedIn: true,
+        accessType:'offline',
+    });
+
     return(
-        <div>
-            <GoogleLogin
-            clientId={clientId}
-            buttonText='Login'
-            onSuccess={onSuccess}
-            onFailure={onFailure}
-            cookiePolicy={'single_host_origin'}
-            style={{marginTop: '100px'}}
-            isSignedIn={true}
-            />
+        <div style={{textAlign:'right'}} > 
+        <button  onClick={signIn} className ="button">
+            <img src= "icons/google.svg" alt= "google login"className ="icon"></img>
+            <span className = "buttonText"> Sign in  </span>
+        </button>
         </div>
     );
 }
