@@ -3,9 +3,9 @@ import React from 'react';
 
 export default function About() {
     return (
-      <div class = "w-75 mx-auto">
+      <div className = "w-75 mx-auto">
         <h2>Welcome to Best Friends!</h2>
-        <div class ="divider"></div>
+        <div className ="divider"></div>
         <p>
           Best Friends is a social site where you can add your current 5 best friends
           to your BFF page. This list of friends can be updated and changed whenever you want.
