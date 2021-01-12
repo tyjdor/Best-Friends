@@ -1,31 +1,34 @@
-import React from 'react';
-import { useGoogleLogin} from 'react-google-login';
-import {refreshTokenSetup} from '../refreshToken';
-import {clientId} from '../config';
+import { useGoogleLogin } from 'react-google-login';
+import { refreshTokenSetup } from '../refreshToken';
+import { clientId } from '../config';
 
-function Login(){
-    const onSuccess =(res)=>{
+
+function Login() {
+
+
+    const onSuccess = (res) => {
         console.log('[Login Success] currentUser:', res.profileObj);
         refreshTokenSetup(res);
     };
-    const onFailure=(res)=>{
+    const onFailure = (res) => {
         console.log('[Login failed]res:', res);
     };
 
-    const{signIn}= useGoogleLogin({
+    const { signIn } = useGoogleLogin({
         onSuccess,
         onFailure,
         clientId,
-        isSignedIn: true,
-        accessType:'offline',
+        isSignedIn: false,
+        accessType: 'offline',
     });
 
-    return(
-        <div style={{textAlign:'right'}} > 
-        <button  onClick={signIn} className ="button">
-            <img src= "icons/google.svg" alt= "google login"className ="icon"></img>
-            <span className = "buttonText"> Sign in  </span>
-        </button>
+    return (
+        <div style={{ textAlign: 'right' }} >
+            <button onClick={signIn} className="button">
+                <img src="icons/google.svg" alt="google login" className="icon"></img>
+                <span className="buttonText"> Sign in  </span>
+            </button>
+
         </div>
     );
 }

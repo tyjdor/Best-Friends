@@ -2,7 +2,9 @@ import React from 'react';
 import{ useGoogleLogout} from 'react-google-login';
 import {clientId} from '../config';
 
+
 function Logout(){
+    
     const onLogoutSuccess =(res)=>{
         alert('Logout successful');
         console.log('Logout Success');
