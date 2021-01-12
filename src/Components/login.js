@@ -1,14 +1,16 @@
 import { useGoogleLogin } from 'react-google-login';
 import { refreshTokenSetup } from '../refreshToken';
 import { clientId } from '../config';
+import { login } from '../actions/authenticationActions';
+import { connect } from 'react-redux';
 
-
-function Login() {
+function Login({ dispatch }) {
 
 
     const onSuccess = (res) => {
         console.log('[Login Success] currentUser:', res.profileObj);
         refreshTokenSetup(res);
+        dispatch(login());
     };
     const onFailure = (res) => {
         console.log('[Login failed]res:', res);
@@ -32,4 +34,4 @@ function Login() {
         </div>
     );
 }
-export default Login;
+export default connect()(Login);
